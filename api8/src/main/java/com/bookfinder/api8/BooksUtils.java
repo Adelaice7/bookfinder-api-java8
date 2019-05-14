@@ -111,7 +111,7 @@ public class BooksUtils {
                 books.add(new Book(title, concatAuthors(authors), date, subtitle, previewLink, listPrice, retailPrice,
                         description));
             }
-            
+
             books.add(new Book(title, DEFAULT_AUTHOR, date, subtitle, previewLink, listPrice, retailPrice,
                     description));
         }
@@ -130,7 +130,7 @@ public class BooksUtils {
     }
 
     private static String httpGetRequest(URI url) throws IOException {
-        CloseableHttpClient  httpClient = HttpClients.createDefault();
+        CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpGet getRequest;
         CloseableHttpResponse response = null;
         InputStream in = null;
@@ -163,8 +163,8 @@ public class BooksUtils {
                 in.close();
             }
 
-           response.close();
-           httpClient.close();
+            response.close();
+            httpClient.close();
         }
 
         return jsonResponse;
