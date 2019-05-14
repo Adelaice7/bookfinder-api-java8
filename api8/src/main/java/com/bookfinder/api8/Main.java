@@ -6,13 +6,12 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        HttpClientConfig config = new HttpClientConfig();
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Search terms: ");
+        System.out.println("Search books: ");
         String searchTerms = sc.nextLine();
 
-        List<Book> books = HttpClientConfig.fetchData(searchTerms);
+        List<Book> books = BooksUtils.fetchData(searchTerms);
 
         int i = 1;
 

@@ -18,9 +18,9 @@ import org.apache.http.impl.client.HttpClients;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class HttpClientConfig {
+public class BooksUtils {
 
-    private static final String API_KEY = "";
+    private static final String API_KEY = "AIzaSyDLC2sT3l9REtMQkD7nqcyE1JjS7SEYfb8";
 
     private static final String API_URI = "https://www.googleapis.com/books/v1/volumes?q=";
 
@@ -33,9 +33,9 @@ public class HttpClientConfig {
         try {
             urlString = new StringBuilder(API_URI)
                     .append(URLEncoder.encode(searchTerms, "UTF-8"))
-                    .append("&key=").append(API_KEY)
-                    .append("&langRestrict=").append("hu")
+                    .append("&langRestrict=").append("en")
                     .append("&filter=").append("ebooks")
+                    .append("&key=").append(API_KEY)
                     .toString();
 
             URI uri = URI.create(urlString);
@@ -106,14 +106,14 @@ public class HttpClientConfig {
                 description = currentVolumeInfo.getString("description");
             }
 
-            if (currentVolumeInfo.isNull("authors")) {
-                books.add(new Book(title, DEFAULT_AUTHOR, date, subtitle, previewLink, listPrice, retailPrice,
-                        description));
-            } else {
+            if (!currentVolumeInfo.isNull("authors")) {
                 JSONArray authors = currentVolumeInfo.getJSONArray("authors");
                 books.add(new Book(title, concatAuthors(authors), date, subtitle, previewLink, listPrice, retailPrice,
                         description));
             }
+            
+            books.add(new Book(title, DEFAULT_AUTHOR, date, subtitle, previewLink, listPrice, retailPrice,
+                    description));
         }
 
         return books;
