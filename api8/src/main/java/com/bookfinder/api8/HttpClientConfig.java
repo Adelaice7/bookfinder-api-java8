@@ -10,10 +10,11 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -129,8 +130,9 @@ public class HttpClientConfig {
     }
 
     private static String httpGetRequest(URI url) throws IOException {
-        DefaultHttpClient httpClient = new DefaultHttpClient();
+        CloseableHttpClient  httpClient = HttpClients.createDefault();
         HttpGet getRequest;
+        CloseableHttpResponse response = null;
         InputStream in = null;
         String jsonResponse = null;
         try {
@@ -138,7 +140,7 @@ public class HttpClientConfig {
 
             getRequest.addHeader("accept", "application/json");
 
-            HttpResponse response = httpClient.execute(getRequest);
+            response = httpClient.execute(getRequest);
 
             if (response.getStatusLine().getStatusCode() == 200) {
                 in = response.getEntity().getContent();
@@ -161,7 +163,8 @@ public class HttpClientConfig {
                 in.close();
             }
 
-            httpClient.getConnectionManager().shutdown();
+           response.close();
+           httpClient.close();
         }
 
         return jsonResponse;

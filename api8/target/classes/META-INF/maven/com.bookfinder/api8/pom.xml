@@ -23,12 +23,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.8</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.google.apis</groupId>
             <artifactId>google-api-services-books</artifactId>
             <version>v1-rev106-1.25.0</version>
@@ -44,6 +38,11 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20180813</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.8</version>
         </dependency>
     </dependencies>
 </project>
