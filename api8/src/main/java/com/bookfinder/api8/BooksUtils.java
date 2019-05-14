@@ -20,7 +20,7 @@ import org.json.JSONObject;
 
 public class BooksUtils {
 
-    private static final String API_KEY = "AIzaSyDLC2sT3l9REtMQkD7nqcyE1JjS7SEYfb8";
+    private static final String API_KEY = "";
 
     private static final String API_URI = "https://www.googleapis.com/books/v1/volumes?q=";
 
