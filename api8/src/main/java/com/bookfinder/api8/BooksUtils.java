@@ -73,10 +73,11 @@ public class BooksUtils {
             JSONObject currentVolumeInfo = currentVolume.getJSONObject("volumeInfo");
             JSONObject currentSaleInfo = currentVolume.getJSONObject("saleInfo");
             JSONObject currentListPrice = null;
+            JSONObject currentRetailPrice = null;
+            
             if (!currentSaleInfo.isNull("listPrice")) {
                 currentListPrice = currentSaleInfo.getJSONObject("listPrice");
             }
-            JSONObject currentRetailPrice = null;
             if (!currentSaleInfo.isNull("retailPrice")) {
                 currentRetailPrice = currentSaleInfo.getJSONObject("retailPrice");
             }
